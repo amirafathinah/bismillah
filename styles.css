@@ -8,8 +8,6 @@
 .progress input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:white}
 .player-extra{width:60px;text-align:right;font-size:13px}
 
-
-/* scroll bars */
 .card-row::-webkit-scrollbar{height:10px}
 .card-row::-webkit-scrollbar-thumb{background:linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));border-radius:10px}
 
