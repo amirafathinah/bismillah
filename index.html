@@ -1,80 +1,276 @@
-<!DOCTYPE html>
-<html lang="en">
+<!--
+Project: Liquid Glass Spotify-like UI
+Files included below (separate into three files in your project folder):
+  1) index.html
+  2) styles.css
+  3) script.js
+
+Instructions: put each section into its respective file and open index.html in a browser.
+-->
+
+<!-- FILE: index.html -->
+<!doctype html>
+<html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Liquid Glass UI</title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-      font-family: Arial, sans-serif;
-      overflow: hidden;
-    }
-
-    .blob {
-      position: absolute;
-      width: 350px;
-      height: 350px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.4), rgba(255,255,255,0.1));
-      backdrop-filter: blur(30px);
-      border-radius: 50%;
-      box-shadow: 0 0 40px rgba(255,255,255,0.2);
-      animation: float 6s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0% { transform: translate(0,0) scale(1); }
-      50% { transform: translate(40px,-30px) scale(1.1); }
-      100% { transform: translate(0,0) scale(1); }
-    }
-
-    .container {
-      position: relative;
-      z-index: 5;
-      padding: 40px 60px;
-      border-radius: 25px;
-      background: rgba(255,255,255,0.15);
-      backdrop-filter: blur(15px);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-      text-align: center;
-      color: white;
-    }
-
-    h1 {
-      margin: 0 0 10px;
-      font-size: 2.2rem;
-    }
-
-    p {
-      margin: 0;
-      font-size: 1.1rem;
-      opacity: 0.8;
-    }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Liquid Glass UI — Demo</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div class="app">
+    <aside class="sidebar glass">
+      <div class="brand">
+        <div class="logo">🎧</div>
+        <h1>Spotify</h1>
+      </div>
+      <nav class="nav">
+        <a class="nav-item active">Home</a>
+        <a class="nav-item">Search</a>
+        <a class="nav-item">Your Library</a>
+        <hr />
+        <a class="nav-item">Create Playlist</a>
+        <a class="nav-item">Liked Songs</a>
+      </nav>
+      <div class="lang">English</div>
+    </aside>
 
-  <div class="blob" id="blob"></div>
+    <main class="main">
+      <section class="hero">
+        <h2>Focus</h2>
+        <div class="card-row" id="focusRow">
+          <article class="card glass">
+            <div class="thumb thumb-1"></div>
+            <h3>Peaceful Piano</h3>
+            <p>Relax and indulge with beautiful piano pieces</p>
+          </article>
+          <article class="card glass">
+            <div class="thumb thumb-2"></div>
+            <h3>Deep Focus</h3>
+            <p>Keep calm and focus with ambient and post-rock</p>
+          </article>
+          <article class="card glass">
+            <div class="thumb thumb-3"></div>
+            <h3>Instrumental Study</h3>
+            <p>Focus with soft study music in the background</p>
+          </article>
+          <article class="card glass">
+            <div class="thumb thumb-4"></div>
+            <h3>Jazz Vibes</h3>
+            <p>The original chill instrumental beats playlist</p>
+          </article>
+          <article class="card glass">
+            <div class="thumb thumb-5"></div>
+            <h3>Focus Flow</h3>
+            <p>Uptempo instrumental hip hop beats</p>
+          </article>
+        </div>
+      </section>
 
-  <div class="container">
-    <h1>Liquid Glass UI</h1>
-    <p>Efek kaca cair ala glassmorphism modern</p>
+      <section class="playlists">
+        <h2>Spotify Playlists</h2>
+        <div class="card-row" id="playlistRow">
+          <!-- repeat sample cards -->
+          <article class="card glass small">
+            <div class="thumb thumb-6"></div>
+            <h4>Today's Top Hits</h4>
+            <p>Ed Sheeran is on top of the charts</p>
+          </article>
+          <article class="card glass small">
+            <div class="thumb thumb-7"></div>
+            <h4>RapCaviar</h4>
+            <p>New music from Roddy</p>
+          </article>
+          <article class="card glass small">
+            <div class="thumb thumb-8"></div>
+            <h4>All Out 2010s</h4>
+            <p>The biggest songs of the decade</p>
+          </article>
+          <article class="card glass small">
+            <div class="thumb thumb-9"></div>
+            <h4>Rock Classics</h4>
+            <p>Rock legends & epic anthems</p>
+          </article>
+          <article class="card glass small">
+            <div class="thumb thumb-10"></div>
+            <h4>Chill Hits</h4>
+            <p>Kick back to the best</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <div class="player glass" id="player">
+      <div class="player-info">
+        <div class="player-thumb"></div>
+        <div class="player-meta">
+          <div class="title">Tune Jo Na Kaha</div>
+          <div class="artist">Pritam, Mohit Chauhan</div>
+        </div>
+      </div>
+      <div class="player-controls">
+        <div class="progress" id="progressWrap">
+          <input type="range" id="progress" min="0" max="100" value="0">
+        </div>
+        <div class="controls-row">
+          <button id="prev">⏮</button>
+          <button id="play">▶️</button>
+          <button id="next">⏭</button>
+        </div>
+      </div>
+      <div class="player-extra">
+        <div class="time">4:07</div>
+      </div>
+    </div>
   </div>
 
-  <script>
-    const blob = document.getElementById("blob");
-
-    document.addEventListener("mousemove", (e) => {
-      const x = e.clientX;
-      const y = e.clientY;
-      blob.animate({ left: `${x - 175}px`, top: `${y - 175}px` }, { duration: 800, fill: "forwards" });
-    });
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
+
+
+/* FILE: styles.css */
+:root{
+  --bg1: #0f0932;
+  --bg2: #2b1277;
+  --accent: #ffb86b;
+  --glass-alpha: 0.14;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background: radial-gradient(600px 300px at 10% 20%, rgba(255,170,120,0.12), transparent),
+              radial-gradient(500px 300px at 90% 80%, rgba(100,80,255,0.12), transparent),
+              linear-gradient(135deg,var(--bg1), var(--bg2));
+  color:#e9e9f1;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding:28px;
+}
+.app{display:flex;gap:20px;height:calc(100vh - 56px)}
+
+/* Glass utility */
+.glass{
+  background: linear-gradient(135deg, rgba(255,255,255,var(--glass-alpha)), rgba(255,255,255,0.03));
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius:16px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  backdrop-filter: blur(8px) saturate(120%);
+}
+
+/* Sidebar */
+.sidebar{width:220px;padding:22px;display:flex;flex-direction:column;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:12px}
+.brand .logo{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#fff6 0%, #fff2 100%);display:flex;align-items:center;justify-content:center;color:#221; font-weight:700}
+.brand h1{font-size:18px;margin:0}
+.nav{margin-top:18px;display:flex;flex-direction:column;gap:10px}
+.nav-item{padding:8px 10px;border-radius:8px;cursor:pointer;opacity:0.9}
+.nav-item.active{background:linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));}
+.lang{font-size:13px;opacity:0.8}
+
+/* Main */
+.main{flex:1;padding:18px 10px;overflow:auto}
+.hero h2, .playlists h2{margin:8px 0 12px 8px;font-size:18px}
+.card-row{display:flex;gap:18px;padding:8px;overflow:auto}
+.card{min-width:210px;padding:14px;border-radius:14px;display:flex;flex-direction:column;gap:10px}
+.card.small{min-width:150px;padding:12px}
+.card .thumb{height:120px;border-radius:10px;background-size:cover;background-position:center}
+.card.small .thumb{height:100px}
+.card h3,h4{margin:0;font-size:16px}
+.card p{margin:0;opacity:0.85;font-size:13px}
+
+/* sample thumb backgrounds (you can replace with images) */
+.thumb-1{background-image:linear-gradient(180deg,#b6e1ff,#7ea8ff)}
+.thumb-2{background-image:linear-gradient(180deg,#1f1b3a,#6b4fff)}
+.thumb-3{background-image:linear-gradient(180deg,#ffd6c4,#ff9a8b)}
+.thumb-4{background-image:linear-gradient(180deg,#c0ffdf,#8fe6c7)}
+.thumb-5{background-image:linear-gradient(180deg,#f3d1ff,#d7abff)}
+.thumb-6{background-image:linear-gradient(180deg,#ffe59e,#ffc66b)}
+.thumb-7{background-image:linear-gradient(180deg,#ccffd6,#a8ffbf)}
+.thumb-8{background-image:linear-gradient(180deg,#cfe0ff,#9db2ff)}
+.thumb-9{background-image:linear-gradient(180deg,#f0c6ff,#e3a3ff)}
+.thumb-10{background-image:linear-gradient(180deg,#d1f0ff,#a4e4ff)}
+
+.card:hover{transform:translateY(-6px) scale(1.01);transition:all 250ms cubic-bezier(.2,.8,.2,1)}
+
+/* Player */
+.player{position:fixed;left:calc(220px + 28px);right:28px;bottom:28px;height:72px;display:flex;align-items:center;gap:18px;padding:10px 18px}
+.player-info{display:flex;gap:10px;align-items:center}
+.player-thumb{width:50px;height:50px;border-radius:8px;background:linear-gradient(180deg,#fff6,#fff2)}
+.player-meta .title{font-weight:600}
+.player-meta .artist{font-size:13px;opacity:0.85}
+.player-controls{flex:1;display:flex;flex-direction:column;gap:6px}
+.controls-row{display:flex;align-items:center;gap:12px;justify-content:center}
+.controls-row button{background:transparent;border:none;color:inherit;font-size:16px;cursor:pointer}
+.progress input[type=range]{width:100%;-webkit-appearance:none;background:transparent}
+.progress input[type=range]::-webkit-slider-runnable-track{height:6px;background:linear-gradient(90deg,#444,rgba(255,255,255,0.12));border-radius:8px}
+.progress input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:white}
+.player-extra{width:60px;text-align:right;font-size:13px}
+
+/* scroll bars */
+.card-row::-webkit-scrollbar{height:10px}
+.card-row::-webkit-scrollbar-thumb{background:linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));border-radius:10px}
+
+/* responsive */
+@media (max-width:900px){.sidebar{display:none}.player{left:28px}}
+
+/* small polished glow */
+.app::after{content:'';position:fixed;inset:0;pointer-events:none;background:radial-gradient(600px 200px at 15% 20%, rgba(255,160,80,0.06), transparent),radial-gradient(500px 200px at 85% 70%, rgba(120,80,255,0.06), transparent)}
+
+
+/* FILE: script.js */
+
+// Simple interactions: playable mock, progress, horizontal scroll by mouse drag
+(() => {
+  const playBtn = document.getElementById('play');
+  const progress = document.getElementById('progress');
+  const progressWrap = document.getElementById('progressWrap');
+  let playing = false;
+  let progressVal = 0;
+  let timer = null;
+
+  playBtn.addEventListener('click', () => {
+    playing = !playing;
+    playBtn.textContent = playing ? '⏸' : '▶️';
+    if (playing) startProgress(); else stopProgress();
+  });
+
+  function startProgress(){
+    stopProgress();
+    timer = setInterval(()=>{
+      progressVal = Math.min(100, progressVal + 0.7);
+      progress.value = progressVal;
+      if(progressVal >= 100){
+        stopProgress();
+        playing = false; playBtn.textContent = '▶️'; progressVal = 0; progress.value = 0;
+      }
+    }, 300);
+  }
+  function stopProgress(){ if(timer){ clearInterval(timer); timer=null }}
+
+  // click a card to 'play' — simulate change of metadata
+  document.querySelectorAll('.card').forEach(card=>{
+    card.addEventListener('click', ()=>{
+      document.querySelectorAll('.card').forEach(c=>c.style.opacity=1);
+      card.style.opacity = 0.95;
+      const title = card.querySelector('h3')?.textContent || card.querySelector('h4')?.textContent || 'Unknown';
+      document.querySelector('.player .title').textContent = title;
+    });
+  });
+
+  // horizontal drag scroll for card rows
+  document.querySelectorAll('.card-row').forEach(row=>{
+    let isDown=false, startX, scrollLeft;
+    row.addEventListener('mousedown',(e)=>{isDown=true;row.classList.add('dragging');startX=e.pageX-row.offsetLeft;scrollLeft=row.scrollLeft});
+    row.addEventListener('mouseleave',()=>{isDown=false;row.classList.remove('dragging')});
+    row.addEventListener('mouseup',()=>{isDown=false;row.classList.remove('dragging')});
+    row.addEventListener('mousemove',(e)=>{if(!isDown) return; e.preventDefault(); const x=e.pageX-row.offsetLeft; const walk=(x-startX)*1.2; row.scrollLeft = scrollLeft - walk;});
+  });
+
+  // small accessibility: keyboard play
+  document.addEventListener('keydown', (e) => {
+    if(e.code === 'Space'){ e.preventDefault(); playBtn.click(); }
+  });
+})();
