@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liquid Glass UI</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    .blob {
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.4), rgba(255,255,255,0.1));
+      backdrop-filter: blur(30px);
+      border-radius: 50%;
+      box-shadow: 0 0 40px rgba(255,255,255,0.2);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translate(0,0) scale(1); }
+      50% { transform: translate(40px,-30px) scale(1.1); }
+      100% { transform: translate(0,0) scale(1); }
+    }
+
+    .container {
+      position: relative;
+      z-index: 5;
+      padding: 40px 60px;
+      border-radius: 25px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      text-align: center;
+      color: white;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 2.2rem;
+    }
+
+    p {
+      margin: 0;
+      font-size: 1.1rem;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="blob" id="blob"></div>
+
+  <div class="container">
+    <h1>Liquid Glass UI</h1>
+    <p>Efek kaca cair ala glassmorphism modern</p>
+  </div>
+
+  <script>
+    const blob = document.getElementById("blob");
+
+    document.addEventListener("mousemove", (e) => {
+      const x = e.clientX;
+      const y = e.clientY;
+      blob.animate({ left: `${x - 175}px`, top: `${y - 175}px` }, { duration: 800, fill: "forwards" });
+    });
+  </script>
+
+</body>
+</html>
